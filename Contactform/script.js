@@ -4,14 +4,24 @@ statusTxt = form.querySelector(".button-area span");
 form.onsubmit = (e)=>{
     e.preventDefault();
     statusTxt.style.display = "block";
+    statusTxt.style.color = "#4195c5";
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "message.php", true);
     xhr.onload = ()=>{
         if(xhr.readyState == 4 && xhr.status == 200){
             let response = xhr.response;
-            console.log(response);
+            if(response.indexOf("Email and password field is required!") != -1 || response.indexOf("Enter a valid email address!") || response.indexOf("Sorry! Failed to send your message")) {
+                statusTxt.style.color = "red";
+            } else {
+                form.reset();
+                setTimeout(()=>{
+                    statusTxt.style.display = "none";
+                }, 3000);
+            }
+            statusTxt.innerText = response;
         }
     }
-    xhr.send();
+    let formData = new FormData(form);
+    xhr.send(formData);
 }
