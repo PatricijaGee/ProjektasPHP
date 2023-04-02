@@ -13,7 +13,7 @@ if (!empty($email) && !empty($message)) {
         $body = "Name: $name\nEmail: $email\nPhone: $phone\nWebsite: $website\n\nMessage: $message\n\nRegards, \n$name";
         $sender = "From: $email";
         if(mail($receiver, $subject, $body, $sender)) {
-            echo "Your message has meen sent!";
+            echo "Your message has been sent!";
         }else {
             echo "Sorry! Failed to send your message";
         }
