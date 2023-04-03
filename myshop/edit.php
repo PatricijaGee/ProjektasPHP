@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         }
 
         $sql = "UPDATE clients " .
-            "SET name = '$name', email = '$email', phone = '$phone', address = '$address' " . "VALUES ('$id', '$name', '$email', '$phone', '$address')";
+            "SET name = '$name', email = '$email', phone = '$phone', address = '$address' " .
         "WHERE id = $id";
 
         $result = $connection->query($sql);
